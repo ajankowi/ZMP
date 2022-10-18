@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdio>
+#include <sstream>
 #include <dlfcn.h>
 #include <cassert>
 #include "Interp4Command.hh"
@@ -6,9 +8,37 @@
 
 using namespace std;
 
+#define LINE_SIZE 500
+
+
+bool ExecPreprocessor(const char *NazwaPliku, istringstream &IStrm4Cmds){
+
+  string Cmd4Preproc = "cpp -P ";
+  char Line[LINE_SIZE];
+  ostringstream OTmpStrm;
+
+  Cmd4Preproc += NazwaPliku;
+  FILE * pProc = popen(Cmd4Preproc.c_str(), "r");
+
+  if (!pProc)
+    return false;
+
+  while (fgets(Line, LINE_SIZE, pProc)) {
+    OTmpStrm << Line;
+  }
+
+  IStrm4Cmds.str(OTmpStrm.str());
+  return pclose(pProc) == 0;
+}
+
+
+
 
 int main()
 {
+
+  istringstream iStrm;
+
   void *pLibHnd_Move = dlopen("libInterp4Move.so",RTLD_LAZY);
   Interp4Command *(*pCreateCmd_Move)(void);
   void *pFun;
@@ -28,6 +58,10 @@ int main()
 
 
   Interp4Command *pCmd = pCreateCmd_Move();
+
+  ExecPreprocessor("prog.njpr", iStrm);
+
+  cout << iStrm.str() << endl;
 
   cout << endl;
   cout << pCmd->GetCmdName() << endl;
