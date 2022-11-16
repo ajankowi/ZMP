@@ -6,6 +6,8 @@
 #include "Vector3D.hh"
 
 
+using namespace std;
+
 /*!
  * \file
  * \brief Zawiera definicję klasy MobileObj

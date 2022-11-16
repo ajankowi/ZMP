@@ -3,6 +3,8 @@
 
 #include "Interp4Command.hh"
 #include <string>
+#include <map>
+#include <dlfcn.h>
 #include <iostream>
 
 using namespace std;
@@ -21,3 +23,4 @@ class LibInterface {
   Interp4Command * ( * pCreateCmd)(void);
 };
 #endif
+
