@@ -14,7 +14,7 @@ class Set4LibInterfaces {
 
     std::map < std::string, LibInterface * > _Lib_List;
 
-  //Scena * scena;
+    Scena * scena;
 
   public:
 

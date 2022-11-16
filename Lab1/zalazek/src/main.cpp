@@ -53,14 +53,7 @@ int main()
 	Set4LibInterfaces * LibraryList = new Set4LibInterfaces(objectsList);
 
 
-
-
-
-
-
-
-
-
+	cout << &LibraryList << endl;
 
 
 
@@ -157,7 +150,16 @@ int main()
 
 	ExecPreprocessor("prog.njpr", iStrm);
 
-	//cout << iStrm.str() << endl;
+	cout << iStrm.str() << endl;
+
+
+	cout << endl;
+	cout << pCmd_set->GetCmdName() << endl;
+	cout << endl;
+	pCmd_set->PrintSyntax();
+	cout << endl;
+	pCmd_set->PrintCmd();
+	cout << endl;
 
 
 	cout << endl;
@@ -171,11 +173,21 @@ int main()
 
 	cout << endl << endl;
 	cout << pCmd_rotate->GetCmdName() << endl;
-  	  cout << endl;
-  	  pCmd_rotate->PrintSyntax();
-  	  cout << endl;
-  	  pCmd_rotate->PrintCmd();
-  	  cout << endl;
+  	cout << endl;
+  	pCmd_rotate->PrintSyntax();
+  	cout << endl;
+  	pCmd_rotate->PrintCmd();
+  	cout << endl;
+
+
+  	cout << endl;
+  	cout << pCmd_pause->GetCmdName() << endl;
+  	cout << endl;
+  	pCmd_pause->PrintSyntax();
+  	cout << endl;
+  	pCmd_pause->PrintCmd();
+  	cout << endl;
+
 
 
   	  delete pCmd;

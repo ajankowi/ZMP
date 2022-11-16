@@ -11,27 +11,27 @@ using namespace std;
 
 class Scena{
   private:
-    std::map < std::string,
+    map < string,
   MobileObj * > _Object_List;
   public:
 
     Scena();
 
-  Scena(std::map < std::string, MobileObj * > & List);
+  Scena(map < string, MobileObj * > & List);
 
   ~Scena() {
     _Object_List.clear();
   };
 
-  MobileObj * FindMobileObj(std::string sName);
+  MobileObj * FindMobileObj(string sName);
 
-  void AddMobileObj(std::string sName);
+  void AddMobileObj(string sName);
 
-  std::map < std::string,
+  map < string,
   MobileObj * > getObjList() {
     return this -> _Object_List;
   }
-  std::vector < MobileObj * > getObjects();
+  vector < MobileObj * > getObjects();
 
 };
 
