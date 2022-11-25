@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include "MobileObj.hh"
+#include <unistd.h>
+
+using namespace std;
 
 /*!
  * \file

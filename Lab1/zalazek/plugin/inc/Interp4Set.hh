@@ -30,10 +30,13 @@ private:
 
   double  _Wsp_x;
   double  _Wsp_y;
+
   double  _Kat_Ox;
   double  _Kat_Oy;
+  double  _Kat_Oz;
 
-  std::string _Obj_Name;
+
+  string _Obj_Name;
 
  public:
   /*!

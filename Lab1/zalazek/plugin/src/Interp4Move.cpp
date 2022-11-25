@@ -2,8 +2,7 @@
 #include "Interp4Move.hh"
 #include "MobileObj.hh"
 
-using std::cout;
-using std::endl;
+using namespace std;
 
 
 extern "C" {
@@ -28,7 +27,7 @@ Interp4Command* CreateCmd(void)
 /*!
  *
  */
-Interp4Move::Interp4Move(): _Speed_mmS(0)
+Interp4Move::Interp4Move(): _Speed_mmS(0), _Lenght(0)
 {}
 
 
@@ -40,7 +39,7 @@ void Interp4Move::PrintCmd() const
   /*
    *  Tu trzeba napisać odpowiednio zmodyfikować kod poniżej.
    */
-  cout << GetCmdName() << " " << _Speed_mmS  << " 10  2" << endl;
+  cout << GetCmdName() << " " << _Speed_mmS  << " " << _Lenght << endl;
 }
 
 
@@ -56,11 +55,38 @@ const char* Interp4Move::GetCmdName() const
 /*!
  *
  */
-bool Interp4Move::ExecCmd( MobileObj  *pMobObj,  int  Socket) const
-{
-  /*
-   *  Tu trzeba napisać odpowiedni kod.
-   */
+bool Interp4Move::ExecCmd( MobileObj  *pMobObj,  int  Socket) const {
+
+	int dire = 0;
+	int iter = 0;
+
+	if(this->_Speed_mmS > 0){
+		dire = 1;
+	}
+	else{
+		dire = -1;
+	}
+
+
+	for (int i = 0; i < iter; ++i){
+
+		//pAccessCtrl->LockAccess();
+	    Vector3D position = pMobObj->GetPositoin_m();
+	    double angle = pMobObj->GetAng_Roll_deg();
+
+	    position[0] += this->_Speed_mmS * dire * cos(M_PI * angle/180);
+	    position[1] += this->_Speed_mmS * dire * sin(M_PI * angle/180);
+
+	    pMobObj->SetPosition_m(position);
+	    //pAccessCtrl->MarkChange();
+	    //pAccessCtrl->UnlockAccess();
+	    usleep(100000);
+
+	}
+
+
+	std::cout<<"Move DONE ";
+
   return true;
 }
 
@@ -70,10 +96,10 @@ bool Interp4Move::ExecCmd( MobileObj  *pMobObj,  int  Socket) const
  */
 bool Interp4Move::ReadParams(std::istream& Strm_CmdsList)
 {
-  /*
-   *  Tu trzeba napisać odpowiedni kod.
-   */
-  return true;
+
+	Strm_CmdsList >> _Speed_mmS >> _Lenght;
+
+  return !Strm_CmdsList.fail();
 }
 
 

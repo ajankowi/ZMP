@@ -2,9 +2,6 @@
 #include "Interp4Pause.hh"
 #include "MobileObj.hh"
 
-using std::cout;
-using std::endl;
-
 
 extern "C" {
  Interp4Command* CreateCmd(void);
@@ -28,7 +25,7 @@ Interp4Command* CreateCmd(void)
 /*!
  *
  */
-Interp4Pause::Interp4Pause(): _Speed_mmS(0)
+Interp4Pause::Interp4Pause(): _Pause_time(0)
 {}
 
 
@@ -40,7 +37,7 @@ void Interp4Pause::PrintCmd() const
   /*
    *  Tu trzeba napisać odpowiednio zmodyfikować kod poniżej.
    */
-  cout << GetCmdName() << endl;
+  cout << GetCmdName() << " " << _Pause_time << endl;
 }
 
 
@@ -58,9 +55,9 @@ const char* Interp4Pause::GetCmdName() const
  */
 bool Interp4Pause::ExecCmd( MobileObj  *pMobObj,  int  Socket) const
 {
-  /*
-   *  Tu trzeba napisać odpowiedni kod.
-   */
+
+	usleep(_Pause_time * 1000);
+
   return true;
 }
 
@@ -70,10 +67,10 @@ bool Interp4Pause::ExecCmd( MobileObj  *pMobObj,  int  Socket) const
  */
 bool Interp4Pause::ReadParams(std::istream& Strm_CmdsList)
 {
-  /*
-   *  Tu trzeba napisać odpowiedni kod.
-   */
-  return true;
+
+	Strm_CmdsList >> _Pause_time;
+
+  return !Strm_CmdsList.fail();
 }
 
 
@@ -91,5 +88,5 @@ Interp4Command* Interp4Pause::CreateCmd()
  */
 void Interp4Pause::PrintSyntax() const
 {
-  cout << "   Pauza obiektu" << endl;
+  cout << "Pause  Czas Pauzy [ms]" << endl;
 }

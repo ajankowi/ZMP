@@ -27,6 +27,10 @@ class Interp4Move: public Interp4Command {
    *  Ponieżej zdefiniowane jest tylko jedno pole jako przykład.
    */
   double  _Speed_mmS;
+  double _Lenght;
+
+  string _Obj_Name;
+
  public:
   /*!
    * \brief

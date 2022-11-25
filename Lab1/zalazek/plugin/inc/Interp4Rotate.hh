@@ -10,18 +10,6 @@
 #include "Interp4Command.hh"
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 class Interp4Rotate: public Interp4Command {
   /*
    *  Tu należy zdefiniować pola, które są niezbędne
@@ -29,6 +17,12 @@ class Interp4Rotate: public Interp4Command {
    *  Ponieżej zdefiniowane jest tylko jedno pole jako przykład.
    */
   double  _Angular_Velocity;
+  double _Angle;
+
+  string _Axis_Name;
+  string _Obj_Name;
+
+
 
  public:
   /*!
