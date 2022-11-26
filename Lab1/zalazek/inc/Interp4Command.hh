@@ -1,17 +1,17 @@
-#ifndef  INTERP4COMMAND_HH
-#define  INTERP4COMMAND_HH
+#ifndef INTERP4COMMAND_HH
+#define INTERP4COMMAND_HH
 
 #include <iostream>
-#include "MobileObj.hh"
-#include <unistd.h>
 
-using namespace std;
+#include "MobileObj.hh"
+
+#include "AccessControl.hh"
 
 /*!
  * \file
  * \brief Definicja klasy Interp4Command
  *
- * Plik zawiera definicjÄ™ klasy Interp4Command ...
+ * Plik zawiera definicjê klasy Interp4Command ...
  */
 
 /*!
@@ -19,34 +19,36 @@ using namespace std;
  *
  *  Klasa modeluje ...
  */
- class Interp4Command {
+class Interp4Command {
   public:
-   /*!
-    * \brief Destruktor wirtualny ze wzgledu na klasy pochodne
-    *
-    *  
-    */
-   virtual ~Interp4Command() {}
-   /*!
-    * \brief WyÅ›wietla postaÄ‡ bieÅ¼Ä…cego polecenia (nazwÄ™ oraz wartoÅ›ci parametrÃ³w).
-    */
-   virtual void PrintCmd() const = 0;
-   /*!
-    * \brief WyÅ›wietla skÅ‚adniÄ™ polecenia.
-    */
-   virtual void PrintSyntax() const = 0;
-   /*!
-    * \brief WyÅ›wietla nazwÄ™ polecenia.
-    */
-   virtual const char* GetCmdName() const = 0;
-   /*!
-    * \brief Wykonuje polecenie oraz wizualizuje jego realizacjÄ™.
-    */
-   virtual bool ExecCmd( MobileObj *pMobObj, int Socket ) const = 0;
-   /*!
-    * \brief Czyta wartoÅ›ci parametrÃ³w danego polecenia.
-    */
-   virtual bool ReadParams(std::istream& Strm_CmdsList) = 0;
- };
+    /*!bObj, int Socket ) const = 0;
+     * \brief Destruktor wirtualny ze wzgledu na klasy pochodne
+     *
+     *
+     */
+    virtual~Interp4Command() {}
+  /*!
+   * \brief Wyœwietla postaæ bie¿¹cego polecenia (nazwê oraz wartoœci parametrów).
+   */
+  virtual void PrintCmd() const = 0;
+  /*!
+   * \brief Wyœwietla sk³adniê polecenia.
+   */
+  virtual void PrintSyntax() const = 0;
+  /*!
+   * \brief Wyœwietla nazwê polecenia.
+   */
+  virtual
+  const char * GetCmdName() const = 0;
+  /*!
+   * \brief Wykonuje polecenie oraz wizualizuje jego realizacjê.
+   */
+  virtual bool ExecCmd(MobileObj * pMobObj, AccessControl * pAccCtrl) const = 0;
+  //virtual bool ExecCmd( MobileObj *pMobObj, int Socket ) const = 0;
+  /*!
+   * \brief Czyta wartoœci parametrów danego polecenia.
+   */
+  virtual bool ReadParams(std::istream & Strm_CmdsList) = 0;
+};
 
 #endif

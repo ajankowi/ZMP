@@ -1,156 +1,231 @@
 #ifndef MOBILEOBJ_HH
 #define MOBILEOBJ_HH
 
-
 #include <string>
+
 #include "Vector3D.hh"
 
-
-using namespace std;
+#include <sstream>
 
 /*!
  * \file
- * \brief Zawiera definicjÄ™ klasy MobileObj
+ * \brief Zawiera definicjê klasy MobileObj
  *
- * Plik zawiera definicjÄ™ klasy MobileObj.
- * Definicja to moÅ¼e byÄ‡ rozszerzona i zmienione mogÄ…
- * byÄ‡ nazwy pÃ³l. ObowiÄ…zkowe sÄ… jedynie nazwy metod.
+ * Plik zawiera definicjê klasy MobileObj.
+ * Definicja to mo¿e byæ rozszerzona i zmienione mog¹
+ * byæ nazwy pól. Obowi¹zkowe s¹ jedynie nazwy metod.
  */
 
+/*!
+ * Nazwy pól klasy s¹ jedynie propozycj¹ i mog¹ byæ zmienione
+ * Nazwy metod s¹ obowi¹zuj¹ce.
+ */
+class MobileObj {
+  /*!
+   * \brief K¹t \e yaw reprezentuje rotacjê zgodnie z ruchem wskazówek zegara
+   *        wokó³ osi \e OZ.
+   *
+   * K¹t \e yaw reprezentuje rotacjê zgodnie z ruchem wskazówek zegara
+   * wokó³ osi \e OZ. Wartoœæ k¹ta wyra¿ona jest w stopniach.
+   */
+  double _Ang_Yaw_deg = 0;
 
+  /*!
+   * \brief K¹t \e pitch reprezentuje rotacjê zgodnie z ruchem wskazówek zegara
+   *        wokó³ osi \e OY.
+   *
+   * K¹t \e pitch reprezentuje rotacjê zgodnie z ruchem wskazówek zegara
+   * wokó³ osi \e OY. Wartoœæ k¹ta wyra¿ona jest w stopniach.
+   */
+  double _Ang_Pitch_deg = 0;
 
+  /*!
+   * \brief K¹t \e roll reprezentuje rotacjê zgodnie z ruchem wskazówek zegara
+   *        wokó³ osi \e OX.
+   *
+   * K¹t \e roll reprezentuje rotacjê zgodnie z ruchem wskazówek zegara
+   * wokó³ osi \e OX. Wartoœæ k¹ta wyra¿ona jest w stopniach.
+   */
+  double _Ang_Roll_deg = 0;
 
-   /*!
-    * Nazwy pÃ³l klasy sÄ… jedynie propozycjÄ… i mogÄ… byÄ‡ zmienione
-    * Nazwy metod sÄ… obowiÄ…zujÄ…ce.
-    */
-    class MobileObj {
-       /*!
-        * \brief KÄ…t \e yaw reprezentuje rotacjÄ™ zgodnie z ruchem wskazÃ³wek zegara
-        *        wokÃ³Å‚ osi \e OZ.
-	*
-	* KÄ…t \e yaw reprezentuje rotacjÄ™ zgodnie z ruchem wskazÃ³wek zegara
-        * wokÃ³Å‚ osi \e OZ. WartoÅ›Ä‡ kÄ…ta wyraÅ¼ona jest w stopniach.
-        */
-       double _Ang_Yaw_deg = 0;
+  /*!
+   * \brief Wspó³rzêdne aktualnej pozycji obiektu.
+   *
+   * Wspó³rzêdne aktualnej pozycji obiektu. Przyjmuje siê,
+   * ¿e wspó³rzêdne wyra¿one s¹ w metrach.
+   */
+  Vector3D _Position_m;
 
-       /*!
-        * \brief KÄ…t \e pitch reprezentuje rotacjÄ™ zgodnie z ruchem wskazÃ³wek zegara
-        *        wokÃ³Å‚ osi \e OY.
-	*
-	* KÄ…t \e pitch reprezentuje rotacjÄ™ zgodnie z ruchem wskazÃ³wek zegara
-        * wokÃ³Å‚ osi \e OY. WartoÅ›Ä‡ kÄ…ta wyraÅ¼ona jest w stopniach.
-        */
-       double _Ang_Pitch_deg = 0;
+  /*!
+   * \brief Nazwa obiektu, która go indentyfikuje.
+   *
+   * Nazwa obiektu, która go indentyfikuje. Z tego wzglêdu musi
+   * musi to byæ nazwa unikalna wœród wszystkich obiektów na scenie.
+   */
+  std::string _Name;
 
-       /*!
-        * \brief KÄ…t \e roll reprezentuje rotacjÄ™ zgodnie z ruchem wskazÃ³wek zegara
-        *        wokÃ³Å‚ osi \e OX.
-	*
-	* KÄ…t \e roll reprezentuje rotacjÄ™ zgodnie z ruchem wskazÃ³wek zegara
-        * wokÃ³Å‚ osi \e OX. WartoÅ›Ä‡ kÄ…ta wyraÅ¼ona jest w stopniach.
-        */
-       double _Ang_Roll_deg = 0;
+  Vector3D _Scale;
 
-       /*!
-        * \brief WspÃ³Å‚rzÄ™dne aktualnej pozycji obiektu.
-	*
-	* WspÃ³Å‚rzÄ™dne aktualnej pozycji obiektu. Przyjmuje siÄ™,
-	* Å¼e wspÃ³Å‚rzÄ™dne wyraÅ¼one sÄ… w metrach.
-        */
-       Vector3D  _Position_m;
+  Vector3D _Shift;
 
-       /*!
-        * \brief Nazwa obiektu, ktÃ³ra go indentyfikuje.
-        *
-        * Nazwa obiektu, ktÃ³ra go indentyfikuje. Z tego wzglÄ™du musi
-        * musi to byÄ‡ nazwa unikalna wÅ›rÃ³d wszystkich obiektÃ³w na scenie.
-        */
-       std::string  _Name;
+  int color[3];
 
-     public:
-      /*!
-       * \brief UdostÄ™pia wartoÅ›Ä‡ kÄ…ta \e roll.
-       *
-       * UdostÄ™pia wartoÅ›Ä‡ kÄ…ta \e roll. Jest ona wyraÅ¼ona w stopniach.
-       */
-       double GetAng_Roll_deg() const { return _Ang_Roll_deg; }
-      /*!
-       * \brief UdostÄ™pia wartoÅ›Ä‡ kÄ…ta \e pitch.
-       *
-       * UdostÄ™pia wartoÅ›Ä‡ kÄ…ta \e pitch. Jest ona wyraÅ¼ona w stopniach.
-       */
-       double GetAng_Pitch_deg() const { return _Ang_Pitch_deg; }
-       /*!
-       * \brief UdostÄ™pia wartoÅ›Ä‡ kÄ…ta \e yaw.
-       *
-       * UdostÄ™pia wartoÅ›Ä‡ kÄ…ta \e yaw. Jest ona wyraÅ¼ona w stopniach.
-       */
-       double GetAng_Yaw_deg() const { return _Ang_Yaw_deg; }
+  public:
+    /*!
+     * \brief Zwraca informacjê o stanie obiektu
+     *
+     * \return ciag znaków zawieraj¹cy informacje o obiekcie.
+     */
+    std::string ActualPosition() {
+      char buffer[100];
+      int len = sprintf(buffer, " Name=%s RotXYZ_deg=(%f,%f,%f)\n", this -> _Name.c_str(), this -> _Ang_Yaw_deg, this -> _Ang_Pitch_deg, this -> _Ang_Roll_deg);
+      std::string result(buffer, len);
 
-      /*!
-       * \brief Zmienia wartoÅ›Ä‡ kÄ…ta \e roll.
-       *
-       * Zmienia wartoÅ›Ä‡ kÄ…ta \e roll.
-       * \param[in] Ang_Roll_deg - nowa wartoÅ›Ä‡ kÄ…ta \e roll wyraÅ¼ona w stopniach.
-       */
-       void SetAng_Roll_deg(double Ang_Roll_deg) { _Ang_Roll_deg = Ang_Roll_deg; }
-      /*!
-       * \brief Zmienia wartoÅ›Ä‡ kÄ…ta \e pitch.
-       *
-       * Zmienia wartoÅ›Ä‡ kÄ…ta \e pitch.
-       * \param[in] Ang_Pitch_deg - nowa wartoÅ›Ä‡ kÄ…ta \e pitch wyraÅ¼ona w stopniach.
-       */
-       void SetAng_Pitch_deg(double Ang_Pitch_deg) { _Ang_Pitch_deg = Ang_Pitch_deg; }
-      /*!
-       * \brief Zmienia wartoÅ›Ä‡ kÄ…ta \e yaw.
-       *
-       * Zmienia wartoÅ›Ä‡ kÄ…ta \e yaw.
-       * \param[in] Ang_Yaw_deg - nowa wartoÅ›Ä‡ kÄ…ta \e yaw wyraÅ¼ona w stopniach.
-       */
-       void SetAng_Yaw_deg(double Ang_Yaw_deg) { _Ang_Yaw_deg = Ang_Yaw_deg; }
+      return result;
+    }
 
-      /*!
-       * \brief UdostÄ™pnia wspÃ³Å‚rzÄ™dne poÅ‚oÅ¼enia obiektu w trybie tylko do odczytu.
-       *
-       * UdostÄ™pnia wspÃ³Å‚rzÄ™dne punktu, ktÃ³ry definiuje poÅ‚oÅ¼enia obiektu
-       * w trybie tylko do odczytu.
-       * DomyÅ›lnie przyjmuje siÄ™, Å¼e jest to geometryczny Å›rodek bryÅ‚y.
-       */
-       const Vector3D & GetPositoin_m() const { return _Position_m; }
-      /*!
-       * \brief UdostÄ™pnia wspÃ³Å‚rzÄ™dne poÅ‚oÅ¼enia obiektu w trybie modyfikacji.
-       *
-       * UdostÄ™pnia wspÃ³Å‚rzÄ™dne punktu, ktÃ³ry definiuje poÅ‚oÅ¼enia obiektu
-       * w trybie modyfikacji.
-       * DomyÅ›lnie przyjmuje siÄ™, Å¼e jest to geometryczny Å›rodek bryÅ‚y.
-       */
-       Vector3D & UsePosition_m() { return _Position_m; }
-      /*!
-       * \brief Zmienia wspÃ³Å‚rzÄ™dne poÅ‚oÅ¼enia obiektu.
-       *
-       * Zmienia wspÃ³Å‚rzÄ™dne punktu, ktÃ³ry definiuje poÅ‚oÅ¼enia obiektu.
-       * DomyÅ›lnie przyjmuje siÄ™, Å¼e jest to geometryczny Å›rodek bryÅ‚y.
-       * \param[in] rPos_m - wspÃ³Å‚rzÄ™dne nowgo poÅ‚oÅ¼enia. Przyjmuje siÄ™,
-       *                     Å¼e sÄ… one wyraÅ¼one w metrach.
-       */
-       void SetPosition_m(const Vector3D &rPos_m) { _Position_m = rPos_m; }
+  /*!
+   * \brief Zwraca informacjê o stanie obiektu
+   *
+   * \return ciag znaków zawieraj¹cy informacje o obiekcie.
+   */
+  std::string returnParameters() {
+    char buffer[200];
+    int length = sprintf(buffer, "Name=%s RGB=(%d,%d,%d) Scale=(%f,%f,%f) Shift=(%f,%f,%f) RotXYZ_deg=(%f,%f,%f) Trans_m=(%f,%f,%f)\n",
+      this -> _Name.c_str(), this -> color[0], this -> color[1], this -> color[2], this -> _Scale[0], this -> _Scale[1], this -> _Scale[2],
+      this -> _Shift[0], this -> _Shift[1], this -> _Shift[2], this -> _Ang_Roll_deg, this -> _Ang_Pitch_deg, this -> _Ang_Yaw_deg, this -> _Position_m[0], this -> _Position_m[1], this -> _Position_m[2]);
+    std::string result(buffer, length);
+    std::string message = result;
+    // Ta instrukcja to tylko uproszczony przyk³ad
+    // cout << objectPointer->movingState;
+    return message; // Tu musi zostaæ wywo³anie odpowiedniej                  // metody/funkcji geruj¹cej polecenia dla serwera
+  }
+  /*!
+   * \brief Udostêpia wartoœæ k¹ta \e roll.
+   *
+   * Udostêpia wartoœæ k¹ta \e roll. Jest ona wyra¿ona w stopniach.
+   */
+  double GetAng_Roll_deg() const {
+    return _Ang_Roll_deg;
+  }
+  /*!
+   * \brief Udostêpia wartoœæ k¹ta \e pitch.
+   *
+   * Udostêpia wartoœæ k¹ta \e pitch. Jest ona wyra¿ona w stopniach.
+   */
+  double GetAng_Pitch_deg() const {
+    return _Ang_Pitch_deg;
+  }
+  /*!
+   * \brief Udostêpia wartoœæ k¹ta \e yaw.
+   *
+   * Udostêpia wartoœæ k¹ta \e yaw. Jest ona wyra¿ona w stopniach.
+   */
+  double GetAng_Yaw_deg() const {
+    return _Ang_Yaw_deg;
+  }
 
+  /*!
+   * \brief Zmienia wartoœæ k¹ta \e roll.
+   *
+   * Zmienia wartoœæ k¹ta \e roll.
+   * \param[in] Ang_Roll_deg - nowa wartoœæ k¹ta \e roll wyra¿ona w stopniach.
+   */
+  void SetAng_Roll_deg(double Ang_Roll_deg) {
+    _Ang_Roll_deg = Ang_Roll_deg;
+  }
+  /*!
+   * \brief Zmienia wartoœæ k¹ta \e pitch.
+   *
+   * Zmienia wartoœæ k¹ta \e pitch.
+   * \param[in] Ang_Pitch_deg - nowa wartoœæ k¹ta \e pitch wyra¿ona w stopniach.
+   */
+  void SetAng_Pitch_deg(double Ang_Pitch_deg) {
+    _Ang_Pitch_deg = Ang_Pitch_deg;
+  }
+  /*!
+   * \brief Zmienia wartoœæ k¹ta \e yaw.
+   *
+   * Zmienia wartoœæ k¹ta \e yaw.
+   * \param[in] Ang_Yaw_deg - nowa wartoœæ k¹ta \e yaw wyra¿ona w stopniach.
+   */
+  void SetAng_Yaw_deg(double Ang_Yaw_deg) {
+    _Ang_Yaw_deg = Ang_Yaw_deg;
+  }
 
-      /*!
-       * \brief Zmienia nazwÄ™ obiektu.
-       *
-       *  Zmienia nazwÄ™ obiektu.
-       *  \param[in] sName - nowa nazwa obiektu.
-       */
-       void SetName(const char* sName) { _Name = sName; }
-       /*!
-        * \brief UdostÄ™pnia nazwÄ™ obiektu.
-	*
-	* UdostÄ™pnia nazwÄ™ obiektu w trybie tylko do odczytu.
-        */
-       const std::string & GetName() const { return _Name; }
-    };
+  /*!
+   * \brief Udostêpnia wspó³rzêdne po³o¿enia obiektu w trybie tylko do odczytu.
+   *
+   * Udostêpnia wspó³rzêdne punktu, który definiuje po³o¿enia obiektu
+   * w trybie tylko do odczytu.
+   * Domyœlnie przyjmuje siê, ¿e jest to geometryczny œrodek bry³y.
+   */
+  const Vector3D & GetPositoin_m() const {
+    return _Position_m;
+  }
+  /*!
+   * \brief Udostêpnia wspó³rzêdne po³o¿enia obiektu w trybie modyfikacji.
+   *
+   * Udostêpnia wspó³rzêdne punktu, który definiuje po³o¿enia obiektu
+   * w trybie modyfikacji.
+   * Domyœlnie przyjmuje siê, ¿e jest to geometryczny œrodek bry³y.
+   */
+  Vector3D & UsePosition_m() {
+    return _Position_m;
+  }
+  /*!
+   * \brief Zmienia wspó³rzêdne po³o¿enia obiektu.
+   *
+   * Zmienia wspó³rzêdne punktu, który definiuje po³o¿enia obiektu.
+   * Domyœlnie przyjmuje siê, ¿e jest to geometryczny œrodek bry³y.
+   * \param[in] rPos_m - wspó³rzêdne nowgo po³o¿enia. Przyjmuje siê,
+   *                     ¿e s¹ one wyra¿one w metrach.
+   */
+  void SetPosition_m(const Vector3D & rPos_m) {
+    _Position_m = rPos_m;
+  }
 
+  /*!
+   * \brief Zmienia nazwê obiektu.
+   *
+   *  Zmienia nazwê obiektu.
+   *  \param[in] sName - nowa nazwa obiektu.
+   */
+  void SetName(const char * sName) {
+    _Name = sName;
+  }
+  /*!
+   * \brief Udostêpnia nazwê obiektu.
+   *
+   * Udostêpnia nazwê obiektu w trybie tylko do odczytu.
+   */
+  const std::string & GetName() const {
+    return _Name;
+  }
+
+  /*!
+   * \brief Zmienia wielkoœæ obiektu
+   *
+   * \param[in] Scale - wektor3D z wartoœciami skali XYZ
+   */
+  void SetScale(const Vector3D & Scale) {
+    _Scale = Scale;
+  }
+
+  /*!
+   * \brief Zmienia kolor obiektu.
+   *
+   * \param[in] RGB - kolor w postaci RGB
+   */
+  void setColor(const std::string RGB) {
+    std::istringstream IStrm;
+    IStrm.str(RGB);
+    IStrm >> this -> color[0] >> this -> color[1] >> this -> color[2];
+  }
+
+  void setShift(const Vector3D & Shift) {
+    _Shift = Shift;
+  }
+};
 
 #endif

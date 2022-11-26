@@ -6,23 +6,32 @@
 # pragma implementation
 #endif
 
-
 #include "Interp4Command.hh"
+#include "AccessControl.hh"
 
+/*!
+ * \file
+ * \brief Definicja klasy Interp4Rotate
+ *
+ * Plik zawiera definicjê klasy Interp4Rotate ...
+ */
 
+/*!
+ * \brief Modeluje polecenie dla robota mobilnego, które wymusza jego ruch obrotowy
+ *
+ *  Klasa modeluje ...
+ */
 class Interp4Rotate: public Interp4Command {
   /*
-   *  Tu naleÅ¼y zdefiniowaÄ‡ pola, ktÃ³re sÄ… niezbÄ™dne
-   *  do przechowywania wartoÅ›ci parametrÃ³w danego polecenia.
-   *  PonieÅ¼ej zdefiniowane jest tylko jedno pole jako przykÅ‚ad.
+   *  Tu nale¿y zdefiniowaæ pola, które s¹ niezbêdne
+   *  do przechowywania wartoœci parametrów danego polecenia.
+   *  Ponie¿ej zdefiniowane jest tylko jedno pole jako przyk³ad.
    */
-  double  _Angular_Velocity;
-  double _Angle;
-
-  string _Axis_Name;
-  string _Obj_Name;
-
-
+  double  _Angular_Velocity;//!< pole przechowuj¹ce szybkoœæ k¹tow¹ w deg/s
+  //double  _Axis; //!<pole przechowuj¹ce numer si obrotu
+  double  _Angle; //!< pole przechowuj¹ce k¹t obrotu w deg
+  std::string _Axis_Name;//!<pole przechowuj¹ce nazwê osi obrotu
+  std::string _Obj_Name;//!<pole przechowuj¹ce nazwê obiektu
 
  public:
   /*!
@@ -30,44 +39,35 @@ class Interp4Rotate: public Interp4Command {
    */
   Interp4Rotate();
   /*!
-   * \brief WyÅ›wietla postaÄ‡ bieÅ¼Ä…cego polecenia (nazwÄ™ oraz wartoÅ›ci parametrÃ³w)
+   * \brief Wyœwietla postaæ bie¿¹cego polecenia (nazwê oraz wartoœci parametrów)
    */
   virtual void PrintCmd() const;
   /*!
-   * \brief WyÅ›wietla skÅ‚adniÄ™ polecenia
+   * \brief Wyœwietla sk³adniê polecenia
    */
   virtual void PrintSyntax() const;
   /*!
-   * \brief WyÅ›wietla nazwÄ™ polecenia
+   * \brief Wyœwietla nazwê polecenia
    */
   virtual const char* GetCmdName() const;
   /*!
-   * \brief Wykonuje polecenie oraz wizualizuje jego realizacjÄ™
+   * \brief Wykonuje polecenie oraz wizualizuje jego realizacjê
    */
-  virtual bool ExecCmd( MobileObj  *pMobObj, int Socket) const;
+  virtual bool ExecCmd( MobileObj  *pMobObj, AccessControl *pAccessCtrl) const;
   /*!
-   * \brief Czyta wartoÅ›ci parametrÃ³w danego polecenia
+   * \brief Czyta wartoœci parametrów danego polecenia
    */
   virtual bool ReadParams(std::istream& Strm_CmdsList);
   /*!
-   * \brief WyÅ›wietla wartoÅ›ci wczytanych parametrÃ³w
+   * \brief Wyœwietla wartoœci wczytanych parametrów
    */
   virtual void PrintParams() {}
   /*!
    * \brief
    *
-   *  Ta metoda nie musi byÄ‡ zdefiniowna w klasie bazowej.
+   *  Ta metoda nie musi byæ zdefiniowna w klasie bazowej.
    */
   static Interp4Command* CreateCmd();
  };
-
-
-
-
-
-
-
-
-
 
 #endif

@@ -12,54 +12,54 @@
  * \file
  * \brief Definicja klasy Interp4Pause
  *
- * Plik zawiera definicjÄ™ klasy Interp4Pause ...
+ * Plik zawiera definicjê klasy Interp4Pause ...
  */
 
 /*!
- * \brief Modeluje polecenie dla robota mobilnego, ktÃ³re wymusza jego ruch do przodu
+ * \brief Modeluje polecenie dla robota mobilnego, które wymusza jego ruch do przodu
  *
- *  Klasa modeluje ...
+ *  Klasa modeluje zatrzymanie w pozycji.
  */
 class Interp4Pause: public Interp4Command {
-  /*
-   *  Tu naleÅ¼y zdefiniowaÄ‡ pola, ktÃ³re sÄ… niezbÄ™dne
-   *  do przechowywania wartoÅ›ci parametrÃ³w danego polecenia.
-   *  PonieÅ¼ej zdefiniowane jest tylko jedno pole jako przykÅ‚ad.
-   */
-  double  _Pause_time;
+
+private:
+   int _Pause_time;
+
+
  public:
   /*!
    * \brief
    */
   Interp4Pause();
   /*!
-   * \brief WyÅ›wietla postaÄ‡ bieÅ¼Ä…cego polecenia (nazwÄ™ oraz wartoÅ›ci parametrÃ³w)
+   * \brief Wyœwietla postaæ bie¿¹cego polecenia (nazwê oraz wartoœci parametrów)
    */
   virtual void PrintCmd() const;
   /*!
-   * \brief WyÅ›wietla skÅ‚adniÄ™ polecenia
+   * \brief Wyœwietla sk³adniê polecenia
    */
   virtual void PrintSyntax() const;
   /*!
-   * \brief WyÅ›wietla nazwÄ™ polecenia
+   * \brief Wyœwietla nazwê polecenia
    */
   virtual const char* GetCmdName() const;
   /*!
-   * \brief Wykonuje polecenie oraz wizualizuje jego realizacjÄ™
+   * \brief Wykonuje polecenie oraz wizualizuje jego realizacjê
    */
-  virtual bool ExecCmd( MobileObj  *pMobObj, int Socket) const;
+  virtual bool ExecCmd( MobileObj  *pMobObj, AccessControl *pAccessCtrl) const;
+
   /*!
-   * \brief Czyta wartoÅ›ci parametrÃ³w danego polecenia
+   * \brief Czyta wartoœci parametrów danego polecenia
    */
   virtual bool ReadParams(std::istream& Strm_CmdsList);
   /*!
-   * \brief WyÅ›wietla wartoÅ›ci wczytanych parametrÃ³w
+   * \brief Wyœwietla wartoœci wczytanych parametrów
    */
   virtual void PrintParams() {}
   /*!
    * \brief
    *
-   *  Ta metoda nie musi byÄ‡ zdefiniowna w klasie bazowej.
+   *  Ta metoda nie musi byæ zdefiniowna w klasie bazowej.
    */
   static Interp4Command* CreateCmd();
  };

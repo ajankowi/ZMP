@@ -14,13 +14,16 @@
 #include "Interp4Command.hh"
 #include "MobileObj.hh"
 #include "Configuration.hh"
+#include "Port.hh"
+#include "xmlinterp.hh"
+#include "klient.hh"
 
 using namespace std;
 
 #define LINE_SIZE 500
 
 
-bool ExecPreprocessor(const char *NazwaPliku, istringstream &IStrm4Cmds){
+/*bool ExecPreprocessor(const char *NazwaPliku, istringstream &IStrm4Cmds){
 
   string Cmd4Preproc = "cpp -P ";
   char Line[LINE_SIZE];
@@ -38,13 +41,54 @@ bool ExecPreprocessor(const char *NazwaPliku, istringstream &IStrm4Cmds){
 
   IStrm4Cmds.str(OTmpStrm.str());
   return pclose(pProc) == 0;
+}*/
+
+
+
+
+int main(){
+	//std::map<std::string, MobileObj*> lista_przyklad;
+	  //MobileObj *obj1 = new MobileObj;
+	  //MobileObj *obj2 = new MobileObj;
+	  //std::cout << &lista_przyklad << std::endl;
+	  // std::cout << obj2 << std::endl;
+	  //lista_przyklad.insert({"Alpha",obj1});
+	  //lista_przyklad.insert({"Beta",obj2});
+
+	  //Set4LibInterfaces *LibraryList = new Set4LibInterfaces(lista_przyklad); // Lista (zestaw) bibliotek
+	  std::istringstream iStrm; // strumieñ danych wejœciowych komend
+	  Configuration config;
+
+	  cout << "Po³¹czenie na porcie: " << PORT << endl;
+
+	  int Socket4Sending;
+
+	  if (false == ReadFile("config/config.xml", config)) {
+	    std::cerr << "!!! B³¹d podczas odczytu config.xml" << std::endl;
+	    return 1;
+	  }
+
+	  std::map < std::string, MobileObj * > objectsList = config.getObjectList();
+	  Set4LibInterfaces * LibraryList = new Set4LibInterfaces(objectsList);
+
+	  if (!OpenConnection(Socket4Sending)) {
+	    return 1;
+	  } else std::cout << "Nawi¹zano po³¹czenie z serwerem." << std::endl;
+	  Sender * _Sender = new Sender(Socket4Sending, LibraryList -> getScena());
+
+	  //thread Thread4Sending(Fun_CommunicationThread, &_Sender);
+	  LibraryList -> ExecPreprocessor("program.cmd", iStrm);
+	  LibraryList -> ReadCommands(iStrm, Socket4Sending);
+
+	  //close(Socket4Sending, _Sender, move(Thread4Sending));
+
+	  return 0;
+
 }
 
 
 
-
-int main()
-{
+/*{
 	Configuration config;
 
 	istringstream iStrm;
@@ -200,4 +244,4 @@ int main()
   	  dlclose(pLibHnd_Pause);
   	  dlclose(pLibHnd_Set);
 
-}
+} */
