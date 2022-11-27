@@ -55,7 +55,7 @@ const char* Interp4Set::GetCmdName() const
 /*!
  *
  */
-bool Interp4Set::ExecCmd( MobileObj  *pMobObj,  AccessControl *pAccessCtrl) const
+bool Interp4Set::ExecCmd( MobileObj  *pMobObj,  GuardedSocket *pAccessCtrl) const
 {
   Vector3D new_position = pMobObj->GetPositoin_m();
   new_position[0] = this->_Wsp_x;

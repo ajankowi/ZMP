@@ -1,14 +1,13 @@
 #pragma once
 
-#include "MobileObj.hh"
 
 #include <string>
-
 #include <map>
-
 #include <vector>
 
-#include "AccessControl.hh"
+#include "GuardedSocket.hh"
+#include "MobileObj.hh"
+
 
 /*!
  * \file
@@ -17,13 +16,13 @@
  * Plik zawiera definicjê klasy Scene, przechowuj¹cej listê obiektów mobilnych w postaci struktury map.
  */
 
-class Scena: public AccessControl {
+class Scena: public GuardedSocket {
   private:
     /*!
      * \brief Mapa wskaŸników na obiekty klasy MobileObj
      */
-    std::map < std::string,
-  MobileObj * > _Object_List;
+    map <string,
+  MobileObj*> _Object_List;
   public:
     /*!
      * \brief Konstruktor klasy
@@ -32,7 +31,7 @@ class Scena: public AccessControl {
   /*!
    * \brief Konstruktor klasy
    */
-  Scena(std::map < std::string, MobileObj * > & List);
+  Scena(map < string, MobileObj * > & List);
   /*!
    * \brief Destruktor klasy
    */
@@ -45,24 +44,24 @@ class Scena: public AccessControl {
    * \param[in] sName - nazwa obiektu mobilnego do wyszukania na scenie
    * \return Zwraca wskaŸnik na znaleziony obiekt lub nullptr, gdy obiekt nie zostanie znaleziony
    */
-  MobileObj * FindMobileObj(std::string sName);
+  MobileObj * FindMobileObj(string sName);
 
   /*!
    * \brief Dodaje obiekt o padanej nazwie do listy obiektów
    *
    * \param[in] sName - nazwa obiektu mobilnego do dodania do sceny
    */
-  void AddMobileObj(std::string sName);
+  void AddMobileObj(string sName);
   /*!
    * \brief zwraca  na liste obiektów
    *
    *
    * \return Pole _Object_List klasy Scena
    */
-  std::map < std::string,
-  MobileObj * > getObjList() {
+  map <string,
+  MobileObj*> getObjList() {
     return this -> _Object_List;
   }
-  std::vector < MobileObj * > getObjects();
+  vector <MobileObj*> getObjects();
 
 };

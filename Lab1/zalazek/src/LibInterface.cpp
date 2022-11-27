@@ -1,7 +1,7 @@
 #include "LibInterface.hh"
 
 
-LibInterface::LibInterface(std::string path) {
+LibInterface::LibInterface(string path) {
 	handler = dlopen(path.c_str(), RTLD_LAZY);
 
 	if (!handler) {

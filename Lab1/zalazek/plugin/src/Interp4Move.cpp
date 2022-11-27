@@ -56,7 +56,7 @@ const char* Interp4Move::GetCmdName() const
 /*!
  *
  */
-bool Interp4Move::ExecCmd( MobileObj  *pMobObj,  AccessControl *pAccessCtrl) const
+bool Interp4Move::ExecCmd( MobileObj  *pMobObj,  GuardedSocket *pAccessCtrl) const
 {
   int direction = this->_Speed_mmS > 0 ? 1 : -1;
   int iterations = std::floor(this->_Lenght/this->_Speed_mmS);

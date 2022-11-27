@@ -52,7 +52,7 @@ private:
   /*!
    * \brief Wykonuje polecenie oraz wizualizuje jego realizacjê
    */
-  virtual bool ExecCmd( MobileObj  *pMobObj, AccessControl *pAccessCtrl) const;
+  virtual bool ExecCmd( MobileObj  *pMobObj, GuardedSocket *pAccessCtrl) const;
   /*!
    * \brief Czyta wartoœci parametrów danego polecenia
    */

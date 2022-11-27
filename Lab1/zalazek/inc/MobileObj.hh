@@ -2,10 +2,10 @@
 #define MOBILEOBJ_HH
 
 #include <string>
+#include <sstream>
 
 #include "Vector3D.hh"
 
-#include <sstream>
 
 /*!
  * \file
@@ -62,7 +62,7 @@ class MobileObj {
    * Nazwa obiektu, która go indentyfikuje. Z tego wzglêdu musi
    * musi to byæ nazwa unikalna wœród wszystkich obiektów na scenie.
    */
-  std::string _Name;
+  string _Name;
 
   Vector3D _Scale;
 
@@ -76,10 +76,10 @@ class MobileObj {
      *
      * \return ciag znaków zawieraj¹cy informacje o obiekcie.
      */
-    std::string ActualPosition() {
+    string ActualPosition() {
       char buffer[100];
       int len = sprintf(buffer, " Name=%s RotXYZ_deg=(%f,%f,%f)\n", this -> _Name.c_str(), this -> _Ang_Yaw_deg, this -> _Ang_Pitch_deg, this -> _Ang_Roll_deg);
-      std::string result(buffer, len);
+      string result(buffer, len);
 
       return result;
     }
@@ -89,13 +89,13 @@ class MobileObj {
    *
    * \return ciag znaków zawieraj¹cy informacje o obiekcie.
    */
-  std::string returnParameters() {
+  string returnParameters() {
     char buffer[200];
     int length = sprintf(buffer, "Name=%s RGB=(%d,%d,%d) Scale=(%f,%f,%f) Shift=(%f,%f,%f) RotXYZ_deg=(%f,%f,%f) Trans_m=(%f,%f,%f)\n",
       this -> _Name.c_str(), this -> color[0], this -> color[1], this -> color[2], this -> _Scale[0], this -> _Scale[1], this -> _Scale[2],
       this -> _Shift[0], this -> _Shift[1], this -> _Shift[2], this -> _Ang_Roll_deg, this -> _Ang_Pitch_deg, this -> _Ang_Yaw_deg, this -> _Position_m[0], this -> _Position_m[1], this -> _Position_m[2]);
-    std::string result(buffer, length);
-    std::string message = result;
+    string result(buffer, length);
+    string message = result;
     // Ta instrukcja to tylko uproszczony przyk³ad
     // cout << objectPointer->movingState;
     return message; // Tu musi zostaæ wywo³anie odpowiedniej                  // metody/funkcji geruj¹cej polecenia dla serwera
@@ -199,7 +199,7 @@ class MobileObj {
    *
    * Udostêpnia nazwê obiektu w trybie tylko do odczytu.
    */
-  const std::string & GetName() const {
+  const string & GetName() const {
     return _Name;
   }
 
@@ -217,8 +217,8 @@ class MobileObj {
    *
    * \param[in] RGB - kolor w postaci RGB
    */
-  void setColor(const std::string RGB) {
-    std::istringstream IStrm;
+  void setColor(const string RGB) {
+    istringstream IStrm;
     IStrm.str(RGB);
     IStrm >> this -> color[0] >> this -> color[1] >> this -> color[2];
   }

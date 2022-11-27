@@ -1,8 +1,8 @@
 #include "Configuration.hh"
 
-void Configuration::AddMobileObj(const std::string & ObjectName,
+void Configuration::AddMobileObj(const string & ObjectName,
   const Vector3D & Scale,
-    const std::string & RGB,
+    const string & RGB,
       const Vector3D & Shift,
         const Vector3D & RotXYZ,
           const Vector3D & Trans) {
@@ -21,6 +21,6 @@ void Configuration::AddMobileObj(const std::string & ObjectName,
   });
 }
 
-void Configuration::AddLibraryName(const std::string & LibraryName) {
+void Configuration::AddLibraryName(const string & LibraryName) {
   LibraryList.push_back(LibraryName);
 }

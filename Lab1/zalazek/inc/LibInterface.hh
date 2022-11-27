@@ -1,15 +1,12 @@
 #ifndef LIBINTERFACE_HH
 #define LIBINTERFACE_HH
 
-#include "Interp4Command.hh"
-
 #include <string>
-
 #include <map>
-
 #include <dlfcn.h>
-
 #include <iostream>
+
+#include "Interp4Command.hh"
 
 
 using namespace std;
@@ -25,13 +22,13 @@ class LibInterface {
 
   public:
 
-    std::string _Lib_Name; //!<pole przechowuje nazwê polecenia
+    string _Lib_Name; //!<pole przechowuje nazwê polecenia
   /*!
    * \brief Kontruktor
    *
    * param[in] path - Œcie¿ka do pliku biblioteki dynamicznej
    */
-  LibInterface(std::string path);
+  LibInterface(string path);
   /*!
    * \brief Destruktor
    *

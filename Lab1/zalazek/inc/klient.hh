@@ -1,28 +1,24 @@
-#pragma once
-
-#include "Scena.hh"
+#ifndef KLIENT_HH
+#define KLIENT_HH
 
 #include <thread>
-
 #include <sys/types.h>
-
 #include <sys/socket.h>
-
 #include <netinet/in.h>
-
 #include <arpa/inet.h>
-
-#include "AccessControl.hh"
-
-#include "Port.hh"
-
 #include <unistd.h>
-
 #include <string.h>
-
 #include <vector>
 
+#include "GuardedSocket.hh"
+#include "Port.hh"
+#include "Scena.hh"
+
+
 using namespace std;
+
+
+
 /*!
  * \brief Wysy³a napis do poprzez gniazdo sieciowe.
  *
@@ -162,3 +158,6 @@ void Fun_CommunicationThread(Sender * pSender);
 bool OpenConnection(int & rSocket);
 
 void close(int socket, Sender & clientSender, thread t);
+
+
+#endif

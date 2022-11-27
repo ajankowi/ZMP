@@ -20,7 +20,7 @@ void Fun_CommunicationThread(Sender * pSender) {
 }
 
 Sender::Sender(int Socket, Scena * pScn): _Socket(Socket), _pScn(pScn) {
-  this -> klient_thread = std::thread(Fun_CommunicationThread, this);
+  this -> klient_thread = thread(Fun_CommunicationThread, this);
 }
 
 bool OpenConnection(int & rSocket) {

@@ -7,7 +7,7 @@
 #endif
 
 #include "Interp4Command.hh"
-#include "AccessControl.hh"
+
 
 /*!
  * \file
@@ -53,7 +53,7 @@ class Interp4Rotate: public Interp4Command {
   /*!
    * \brief Wykonuje polecenie oraz wizualizuje jego realizacjê
    */
-  virtual bool ExecCmd( MobileObj  *pMobObj, AccessControl *pAccessCtrl) const;
+  virtual bool ExecCmd( MobileObj  *pMobObj, GuardedSocket *pAccessCtrl) const;
   /*!
    * \brief Czyta wartoœci parametrów danego polecenia
    */

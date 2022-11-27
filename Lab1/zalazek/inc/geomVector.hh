@@ -19,6 +19,7 @@
 #include <cmath>
 #include <cassert>
 
+using namespace std;
 
 /*!
  * \file
@@ -422,7 +423,7 @@ namespace geom {
  */
 template<typename Type, unsigned int Size>
 inline
-std::ostream & operator << ( std::ostream &OStrm, const geom::Vector<Type,Size> &V)
+ostream & operator << ( ostream &OStrm, const geom::Vector<Type,Size> &V)
 {
   OStrm << "(" << V[0];
    for (unsigned int Ind = 1; Ind < Size; ++Ind) {

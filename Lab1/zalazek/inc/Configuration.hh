@@ -1,70 +1,44 @@
 #ifndef CONFIGURATION_HH
 #define CONFIGURATION_HH
-#include "MobileObj.hh"
 
 #include <map>
-
 #include <string>
-
 #include <vector>
-
 #include <memory>
 
-/*!
- * \file
- * \brief Definicja klasy Configuration.
- *
- * Plik zawiera definicjê klasy Configuration,
- * która przechowuje konfiguracjê sceny i listê bibliotek,
- * odczytywana z pliku XML.
- */
+#include "MobileObj.hh"
 
-class Configuration {
 
-  /*!
-   * \brief Lista obiektów mobilnych w postaci struktury mapy
-   */
-  std::map < std::string, MobileObj * > ObjectsList;
-  /*!
-   * \brief Lista nazw bibliotek
-   */
-  std::vector < std::string > LibraryList;
+class Configuration{
+
+
+  map <string, MobileObj*> ObjectsList;
+
+  vector <string> LibraryList;
 
   public:
     ~Configuration() {
       ObjectsList.clear();
     }
-  /*!
-   * \brief Metoda dodaje obiekt mobilny odczytany z pliku konfiguracyjnego XML
-   *\param[in] LibraryName - nazwa biblioteki, która zostaje dodana do listy
-   */
-  void AddLibraryName(const std::string & LibraryName);
-  /*!
-   * \brief Metoda dodaje nazwê biblioteki odczytan¹ z pliku konfiguracyjnego XML
-   *\param[in] ObjectName - nazwa obiektu, który zastaje dodany do listy
-   * \param[in] Scale - wektor z wartoœciami skali obiektu
-   * \param[in] RGB - napis z wartoœciami Red Green Blue obiektu
-   */
 
-  //void AddMobileObj(const std::string &ObjectName,const Vector3D &Scale, const std::string &RGB);
-  void AddMobileObj(const std::string & ObjectName,
+  void AddLibraryName(const string & LibraryName);
+
+
+
+  void AddMobileObj(const string & ObjectName,
     const Vector3D & Scale,
-      const std::string & RGB,
+      const string & RGB,
         const Vector3D & Shift,
           const Vector3D & RotXYZ,
             const Vector3D & Trans);
 
-  /*!
-   * \brief Metoda zwraca listê nazw bibliotek
-   */
-  std::vector < std::string > & getLibraryList() {
-    return this -> LibraryList;
+
+  vector <string> & getLibraryList() {
+    return this->LibraryList;
   }
-  /*!
-   * \brief Metoda zwraca listê obiektów mobilnych
-   */
-  std::map < std::string, MobileObj * > & getObjectList() {
-    return this -> ObjectsList;
+
+  map <string, MobileObj * > & getObjectList(){
+    return this->ObjectsList;
   }
 
 };

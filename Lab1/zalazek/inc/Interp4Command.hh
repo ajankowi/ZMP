@@ -4,8 +4,7 @@
 #include <iostream>
 
 #include "MobileObj.hh"
-
-#include "AccessControl.hh"
+#include "GuardedSocket.hh"
 
 /*!
  * \file
@@ -43,12 +42,12 @@ class Interp4Command {
   /*!
    * \brief Wykonuje polecenie oraz wizualizuje jego realizacjê.
    */
-  virtual bool ExecCmd(MobileObj * pMobObj, AccessControl * pAccCtrl) const = 0;
+  virtual bool ExecCmd(MobileObj * pMobObj, GuardedSocket * pAccCtrl) const = 0;
   //virtual bool ExecCmd( MobileObj *pMobObj, int Socket ) const = 0;
   /*!
    * \brief Czyta wartoœci parametrów danego polecenia.
    */
-  virtual bool ReadParams(std::istream & Strm_CmdsList) = 0;
+  virtual bool ReadParams(istream & Strm_CmdsList) = 0;
 };
 
 #endif

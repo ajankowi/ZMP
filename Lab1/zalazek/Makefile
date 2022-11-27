@@ -25,7 +25,7 @@ LDFLAGS=-Wall
 interp: obj/main.o obj/LibInterface.o obj/Set4LibInterfaces.o obj/Scena.o obj/xmlinterp.o obj/klient.o obj/Configuration.o
 	g++ ${LDFLAGS} -o interp  obj/main.o obj/LibInterface.o obj/Set4LibInterfaces.o obj/Scena.o  obj/xmlinterp.o obj/klient.o obj/Configuration.o -ldl -lxerces-c -pthread
 
-obj/main.o: src/main.cpp inc/Interp4Command.hh inc/xmlinterp.hh  inc/AccessControl.hh inc/Configuration.hh inc/Port.hh inc/klient.hh
+obj/main.o: src/main.cpp inc/Interp4Command.hh inc/xmlinterp.hh  inc/GuardedSocket.hh inc/Configuration.hh inc/Port.hh inc/klient.hh
 	g++ -c ${CPPFLAGS} -o obj/main.o src/main.cpp
 
 obj/LibInterface.o: src/LibInterface.cpp inc/LibInterface.hh
@@ -40,7 +40,7 @@ obj/Scena.o: src/Scena.cpp inc/Scena.hh
 obj/xmlinterp.o: src/xmlinterp.cpp inc/xmlinterp.hh 
 	g++ -c ${CPPFLAGS} -o obj/xmlinterp.o src/xmlinterp.cpp
 
-obj/klient.o: src/klient.cpp inc/klient.hh  inc/AccessControl.hh
+obj/klient.o: src/klient.cpp inc/klient.hh  inc/GuardedSocket.hh
 	g++ -c ${CPPFLAGS} -o obj/klient.o src/klient.cpp
 
 obj/Configuration.o: src/Configuration.cpp inc/Configuration.hh 
