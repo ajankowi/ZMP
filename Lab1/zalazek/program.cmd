@@ -2,7 +2,7 @@
 #define FOURTYFIVE 45
 
 
- /*
+ 
 
 Begin_Parallel_Actions
 Rotate Podstawa 5 Z NIGHTY  
@@ -24,7 +24,6 @@ End_Parallel_Actions
 
 
 
-*/
 
 
 
